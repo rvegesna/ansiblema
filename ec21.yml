@@ -1,0 +1,13 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  vars_files:
+    - awscreds.yml
+  tasks:
+    - name: provision
+      ec2:
+         aws_access_key: "{{aws_id}}"
+         aws_secret_key: "{{aws_key}}"
+         region: "{{aws_region}}"
+         instance_ids: 'i-04e38fac9dee24400'
+         state: 'absent'

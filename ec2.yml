@@ -1,0 +1,15 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  vars_files:
+    - awscreds.yml
+  tasks:
+    - name: provision
+      ec2:
+         aws_access_key: "{{aws_id}}"
+         aws_secret_key: "{{aws_key}}"
+         region: "{{aws_region}}"
+         image: ami-0c02fb55956c7d316 
+         instance_type: t2.micro
+         vpc_subnet_id: subnet-0558e02edac35f75d
+         state: 'present'
